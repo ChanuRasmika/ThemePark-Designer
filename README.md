@@ -1,10 +1,44 @@
 # Theme Park Project - Modular Attraction System
 
+## Project Structure
+```
+src/
+├── core/               # Core engine files
+│   └── main_modular.cpp
+├── attractions/        # Attraction implementations
+│   └── MerryGoRound.cpp
+├── managers/           # Manager classes
+│   └── AttractionManager.cpp
+└── utils/              # Utility files
+
+include/
+├── core/               # Core headers
+│   └── Attraction.h
+├── attractions/        # Attraction headers
+│   └── MerryGoRound.h
+├── managers/           # Manager headers
+│   └── AttractionManager.h
+└── utils/              # Utility headers
+    ├── stb_image.h
+    └── tiny_obj_loader.h
+
+assets/                 # 3D models and textures
+└── merry-go-round/
+    ├── source/
+    └── textures/
+
+build/                  # Build output
+lib/                    # External libraries
+```
+
 ## How to Add New Attractions
 
-### 1. Create Your Attraction Class
-Copy `FerrisWheel.h` as template:
+### 1. Create Your Attraction Header
+Create `include/attractions/YourAttraction.h`:
 ```cpp
+#pragma once
+#include "core/Attraction.h"
+
 class YourAttraction : public Attraction {
     // Add your private members (VAO, VBO, texture, etc.)
 public:
@@ -17,42 +51,54 @@ public:
 ```
 
 ### 2. Implement Your Class
-Create `YourAttraction.cpp` and implement the methods:
-- `load()`: Load your .obj file and textures
+Create `src/attractions/YourAttraction.cpp` and implement the methods:
+- `load()`: Load your .obj file and textures from `assets/your-attraction/`
 - `render()`: Draw your attraction
 - `cleanup()`: Delete OpenGL resources
 
 ### 3. Register Your Attraction
-In `main_modular.cpp`, add:
+In `src/core/main_modular.cpp`, add:
 ```cpp
-#include "YourAttraction.h"
+#include "attractions/YourAttraction.h"
 // In main():
 manager.registerAttraction(2, std::make_unique<YourAttraction>());
 ```
 
 ### 4. Add Your Assets
-Put your files in `Obj_texture/your-attraction/`:
+Put your files in `assets/your-attraction/`:
 - `source/model.obj`
 - `textures/texture.png`
 
-## File Structure
+## Building
+Use the Makefile to compile:
 ```
-Attraction.h          - Base class interface
-AttractionManager.*   - Manages multiple attractions
-MerryGoRound.*       - Example implementation
-main_modular.cpp     - Main program with menu system
+make
 ```
 
-## Building
-Compile with all .cpp files:
+This will create `build/merrygoround.exe`
+
+To clean build files:
 ```
-g++ main_modular.cpp MerryGoRound.cpp AttractionManager.cpp [YourAttraction.cpp] -lglfw3 -lglad -lassimp
+make clean
 ```
 
 ## Usage
 Run the program and select attractions from the menu:
 ```
+cd build
+merrygoround.exe
+```
+
+Menu example:
+```
 1. Merry Go Round - Classic spinning carousel
 2. Your Attraction - Your description
 Enter numbers: 1 2
 ```
+
+## Controls
+- **WASD**: Move camera around
+- **Arrow Keys**: Rotate model
+- **Q/E**: Roll rotation
+- **R**: Reset rotations
+- **ESC**: Exit

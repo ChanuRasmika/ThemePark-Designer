@@ -1,15 +1,20 @@
 CXX = g++
-CXXFLAGS = -Ilib/glad/include -Ilib/GLFW/include -Ilib/ASSIMP/include
+CXXFLAGS = -Iinclude -Ilib/glad/include -Ilib/GLFW/include -Ilib/ASSIMP/include
 LDFLAGS = -Llib/GLFW/lib-mingw-w64 -Llib/ASSIMP/lib
 LIBS = -lglfw3 -lassimp -lopengl32 -lgdi32
 
-SOURCES = main_modular.cpp AttractionManager.cpp MerryGoRound.cpp lib/glad/src/glad.c
-TARGET = merrygoround.exe
+SRCDIR = src
+BUILDDIR = build
+SOURCES = $(SRCDIR)/core/main_modular.cpp $(SRCDIR)/managers/AttractionManager.cpp $(SRCDIR)/attractions/MerryGoRound.cpp lib/glad/src/glad.c
+TARGET = $(BUILDDIR)/merrygoround.exe
 
-$(TARGET): $(SOURCES)
+$(TARGET): $(SOURCES) | $(BUILDDIR)
 	$(CXX) $(SOURCES) -o $(TARGET) $(CXXFLAGS) $(LDFLAGS) $(LIBS)
 
+$(BUILDDIR):
+	mkdir $(BUILDDIR)
+
 clean:
-	del $(TARGET)
+	if exist $(BUILDDIR) rmdir /s /q $(BUILDDIR)
 
 .PHONY: clean
