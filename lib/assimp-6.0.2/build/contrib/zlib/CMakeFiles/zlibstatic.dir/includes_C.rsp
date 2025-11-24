@@ -1,0 +1,1 @@
+-I"D:/GV/lib/assimp-6.0.2/build/include" -I"D:/GV/lib/assimp-6.0.2/build" -I"D:/GV/lib/assimp-6.0.2/include" -I"D:/GV/lib/assimp-6.0.2/code" -I"D:/GV/lib/assimp-6.0.2/." -I"D:/GV/lib/assimp-6.0.2/build/contrib/zlib" -I"D:/GV/lib/assimp-6.0.2"
