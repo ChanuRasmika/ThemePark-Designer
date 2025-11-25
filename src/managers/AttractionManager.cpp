@@ -53,6 +53,13 @@ void AttractionManager::renderAttractions(unsigned int shaderProgram, float* mod
     }
 }
 
+void AttractionManager::renderAttraction(int id, unsigned int shaderProgram, float* model, float* view, float* projection) {
+    auto it = attractions.find(id);
+    if (it != attractions.end()) {
+        it->second->render(shaderProgram, model, view, projection);
+    }
+}
+
 void AttractionManager::cleanup() {
     for (const auto& pair : attractions) {
         pair.second->cleanup();

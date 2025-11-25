@@ -14,5 +14,6 @@ public:
     std::vector<int> getUserSelection();
     bool loadAttractions(const std::vector<int>& selectedIds);
     void renderAttractions(unsigned int shaderProgram, float* model, float* view, float* projection);
+    void renderAttraction(int id, unsigned int shaderProgram, float* model, float* view, float* projection);
     void cleanup();
 };

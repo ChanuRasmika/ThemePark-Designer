@@ -83,18 +83,19 @@ make clean
 ```
 
 ## Usage
-Run the program and select attractions from the menu:
+Run the program and select attractions:
 ```
 cd build
 merrygoround.exe
 ```
 
-Menu example:
-```
-1. Merry Go Round - Classic spinning carousel
-2. Your Attraction - Your description
-Enter numbers: 1 2
-```
+The program will ask you to add:
+- Merry-Go-Round (positioned at -20, -20)
+- Food Stall (positioned at 25, -15) 
+- Game Stall (positioned at 15, 25)
+- Road System (connects the park)
+
+Each attraction is positioned at different locations to create a proper 3D theme park layout.
 
 ## Controls
 - **WASD**: Move camera around
