@@ -19,9 +19,3 @@ To use the ImGui interface, you need to download ImGui:
    ```
 
 4. Build the project with CMake as usual
-
-## Features Added:
-- GUI window for inputting element counts
-- Auto-generation toggle
-- Real-time grid size calculation
-- Clean interface integration with existing 2D/3D modes
